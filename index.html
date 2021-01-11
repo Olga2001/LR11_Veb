@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Базавлюк Ольга ДЗ_11</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+        <span class="title">Форма для учета посещаемости студентов</span><br>
+        <span class="title link"><a href="https://github.com/Olga2001/LR11_Veb.git">Сслыка на GitHub</a></span>
+
+    <div id="visible">
+        <div v-show="visible" style="font-size: 14px;">
+            <h1>Данный шрифт был импортирован с сайта Google Fonts</h1>
+            <p>Для отметки присутствия студента введите его фамилию и имя в данную
+                форму и нажмите на кнопку</p>
+        </div>
+    </div>
+
+    <div class="menu">
+        <div id="menu">
+            <form class="form">
+                <h1>Форма для учета посещаемости</h1>
+                <div><label>Фамилия</label>
+                    <input v-model="surname" required type="text" placeholder="Фамилия" />
+                </div>
+                <div><label>Имя</label>
+                    <input required v-model="name" type="text" placeholder="Имя" />
+                </div>
+
+                <center><button v-on:click="if(surname !== '' && name !== ''){list1.push(surname+
+                    ' '+name),setEmpty()}" type="submit"> Внести студента в список</button></center>
+
+            </form>
+            <p v-if="list1.length == 0">Список пуст</p>
+            <ol>
+                <li v-for="i in list1">
+                    <p class="list_item">{{i}}</p>
+                </li>
+            </ol>
+
+        </div>
+        <script>
+            var menu = new Vue({
+                el: '#menu',
+                data: {
+                    surname: '',
+                    list1: [],
+                    name: '',
+                },
+                methods: {
+                    setEmpty: function() {
+                        this.surname = "";
+                        this.name = "";
+                    }
+                }
+            })
+
+        </script>
+    </div>
+</body>
+</html>
